@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
 
-public class ReminderRepository(context: Context) {
 
     private var reminderDao: ReminderDao
 
