@@ -1,7 +1,9 @@
-package com.example.madlevel4example
+package com.example.madlevel5example
 
 import android.content.Context
-import com.example.madlevel4example.Reminder
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+
 
 public class ReminderRepository(context: Context) {
 
@@ -12,8 +14,8 @@ public class ReminderRepository(context: Context) {
         reminderDao = reminderRoomDatabase!!.reminderDao()
     }
 
-    suspend fun getAllReminders(): List<Reminder> {
-        return reminderDao.getAllReminders()
+    fun getAllReminders(): LiveData<List<Reminder>> {
+        return reminderDao.getAllReminders() ?: MutableLiveData(emptyList())
     }
 
     suspend fun insertReminder(reminder: Reminder) {
@@ -23,6 +25,7 @@ public class ReminderRepository(context: Context) {
     suspend fun deleteReminder(reminder: Reminder) {
         reminderDao.deleteReminder(reminder)
     }
+
 
     suspend fun updateReminder(reminder: Reminder) {
         reminderDao.updateReminder(reminder)
